@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "ObjectMacros.h"
+#include "UObject/ObjectMacros.h"
 
 /**
 * Hand type

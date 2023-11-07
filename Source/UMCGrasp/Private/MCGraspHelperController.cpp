@@ -294,7 +294,7 @@ bool UMCGraspHelperController::SetGraspedObjectProperties()
 
 	// Get the best candidate from the overlap pool
 	GraspedObject = GetBestCandidate();
-	if (GraspedObject && GraspedObject->IsValidLowLevel() && !GraspedObject->IsPendingKillOrUnreachable())
+	if (GraspedObject && IsValid(GraspedObject) && !GraspedObject->IsUnreachable())
 	{
 		if (UStaticMeshComponent* SMC = GraspedObject->GetStaticMeshComponent())
 		{
@@ -327,7 +327,7 @@ bool UMCGraspHelperController::SetGraspedObjectProperties()
 // Clear object help properties
 bool UMCGraspHelperController::ResetGraspedObjectProperties()
 {
-	if (GraspedObject && GraspedObject->IsValidLowLevel() && !GraspedObject->IsPendingKillOrUnreachable())
+	if (GraspedObject && IsValid(GraspedObject) && !GraspedObject->IsUnreachable())
 	{
 		if (GraspedObjectSMC)
 		{
