@@ -141,7 +141,7 @@ void UMC6DTarget::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyC
 	else if (PropertyName == GET_MEMBER_NAME_CHECKED(UMC6DTarget, bUpdateLocationButtonHack))
 	{
 		bUpdateLocationButtonHack = false;
-		if (!OverwriteSkeletalMeshActor || !OverwriteSkeletalMeshActor->IsValidLowLevel() || OverwriteSkeletalMeshActor->IsPendingKillOrUnreachable())
+		if (!OverwriteSkeletalMeshActor || !IsValid(OverwriteSkeletalMeshActor) || OverwriteSkeletalMeshActor->IsUnreachable())
 		{
 			UE_LOG(LogTemp, Warning, TEXT("%s::%d %s::%s's OverwriteSkeletalMeshActor is not valid.."),
 				*FString(__FUNCTION__), __LINE__, *GetOwner()->GetName(), *GetName());
@@ -155,7 +155,7 @@ void UMC6DTarget::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyC
 			return;
 		}
 
-		if (!SkeletalMeshActor || !SkeletalMeshActor->IsValidLowLevel() || SkeletalMeshActor->IsPendingKillOrUnreachable())
+		if (!SkeletalMeshActor || !IsValid(SkeletalMeshActor) || SkeletalMeshActor->IsUnreachable())
 		{
 			UE_LOG(LogTemp, Warning, TEXT("%s::%d %s::%s's SkeletalMeshActor is not valid.."),
 				*FString(__FUNCTION__), __LINE__, *GetOwner()->GetName(), *GetName());
